@@ -14,6 +14,7 @@ Mostrar o MENU:
 
 int main(int val, int tam, int opc)
 {
+
     // Tamanho do vetor
     int i, j;
     printf("Digite a quantidade de valores: ");
@@ -53,7 +54,6 @@ int main(int val, int tam, int opc)
     }
     else if (opc == 2) // Incompleta
     {
-        int encontrado;
         int pos;
         int ini;
         int meio;
@@ -74,16 +74,16 @@ int main(int val, int tam, int opc)
 
             if (v[meio] == val)
             {
-                pos = meio; // Valor encontrado, armazena a posição em 'posicao'
+                pos = meio; 
                 break;
             }
             else if (v[meio] < val)
             {
-                ini = meio + 1; // Pesquisa na metade direita
+                ini = meio + 1; 
             }
             else
             {
-                fim = meio - 1; // Pesquisa na metade esquerda
+                fim = meio - 1; 
             }
         }
 
@@ -103,12 +103,47 @@ int main(int val, int tam, int opc)
             /* code */
         }
     }
+
     else if (opc == 4)
-    {
-        // Inserir +1 valor ao vetort
-    }
-    else
-    {
-        printf("Opcao invalida.");
+    { // Mais um elemento para o vetor
+        int novoTamanho = tam + 1;
+        int novoVetor[novoTamanho];
+        int novoValor;
+
+        if (tam >= 3 && tam <= 50)
+        {
+            printf("Digite o valor a ser adicionado: ");
+            scanf("%d", &novoValor);
+
+            for (i = 0; i < tam; i++)
+            {
+                if (v[i] > novoValor)
+                {
+                    break;
+                }
+            }
+
+            for (j = 0; j < i; j++)
+            {
+                novoVetor[j] = v[j];
+            }
+
+            novoVetor[i] = novoValor;
+
+            for (j = i; j < tam; j++)
+            {
+                novoVetor[j + 1] = v[j];
+            }
+
+            printf("Vetor Completo:\n");
+            for (j = 0; j < novoTamanho; j++)
+            {
+                printf("%d ", novoVetor[j]);
+            }
+        }
+        else
+        {
+            printf("Opcao invalida.");
+        }
     }
 }
