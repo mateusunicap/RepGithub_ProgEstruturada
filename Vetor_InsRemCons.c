@@ -15,14 +15,14 @@ Mostrar o MENU:
 int main(int val, int tam, int opc)
 {
     // Tamanho do vetor
-    int i, j, qtd;
+    int i, j;
     printf("Digite a quantidade de valores: ");
-    scanf("%d", &qtd);
+    scanf("%d", &tam);
 
-    int v[qtd];
+    int v[tam];
 
     // Preencher o vetor
-    for (i = 0; i < qtd; ++i)
+    for (i = 0; i < tam; ++i)
     {
         printf("Digite o valor %d: ", i + 1);
         scanf("%d", &val);
@@ -33,7 +33,6 @@ int main(int val, int tam, int opc)
         }
         v[j] = val;
     }
-
 
     // MENU
     printf("\nDigite a opcao que deseja:\n");
@@ -47,21 +46,62 @@ int main(int val, int tam, int opc)
     {
         // Imprimir todo o vetor
         printf("Vetor completo:\n");
-        for (int i = 0; i < qtd; ++i)
+        for (int i = 0; i < tam; ++i)
         {
             printf("%i;", v[i]);
         }
     }
-    else if (opc == 2)
+    else if (opc == 2) // Incompleta
     {
-        // Consular em que posição o elemento digitado está
-        int i;
-        printf("Digite o valor que deseja consultar: ");
-        scanf("%i", &i);
+        int encontrado;
+        int pos;
+        int ini;
+        int meio;
+        int fim;
+        int qtd;
+
+        printf("Digite o valor que deseja buscar: ");
+        scanf("%d", &val);
+
+        // Inicialização das variáveis para a busca binária
+        ini = 0;
+        fim = qtd - 1;
+
+        // Realiza a busca binária
+        while (0 <= qtd - 1)
+        {
+            meio = (ini + fim) / 2;
+
+            if (v[meio] == val)
+            {
+                pos = meio; // Valor encontrado, armazena a posição em 'posicao'
+                break;
+            }
+            else if (v[meio] < val)
+            {
+                ini = meio + 1; // Pesquisa na metade direita
+            }
+            else
+            {
+                fim = meio - 1; // Pesquisa na metade esquerda
+            }
+        }
+
+        if (pos != -1)
+        {
+            printf("Valor encontrado na posicao %d do vetor\n", pos + 1);
+        }
+        else
+        {
+            printf("Valor não encontrado no vetor\n");
+        }
     }
     else if (opc == 3)
     {
-        // Remover um elemento
+        for (i = 0; i < tam; ++i)
+        {
+            /* code */
+        }
     }
     else if (opc == 4)
     {
