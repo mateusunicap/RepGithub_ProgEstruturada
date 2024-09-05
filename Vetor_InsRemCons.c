@@ -52,55 +52,60 @@ int main(int val, int tam, int opc)
             printf("%i;", v[i]);
         }
     }
-    else if (opc == 2) // Incompleta
+    else if (opc == 2) // Está dando erro na hora de imprimir onde o valor está
     {
-        int pos;
+
         int ini;
         int meio;
         int fim;
-        int qtd;
+        int valProc;
+        int esq, dir;
 
-        printf("Digite o valor que deseja buscar: ");
-        scanf("%d", &val);
+        printf("Digite o valor a ser procurado: ");
+        scanf("%d", &valProc);
 
-        // Inicialização das variáveis para a busca binária
-        ini = 0;
-        fim = qtd - 1;
-
-        // Realiza a busca binária
-        while (0 <= qtd - 1)
+        while (ini <= fim)
         {
-            meio = (ini + fim) / 2;
+            meio = ini + (fim - ini) / 2;
 
-            if (v[meio] == val)
+            if (v[meio] == valProc)
             {
-                pos = meio; 
-                break;
+                printf("Valor encontrado na posicao: %d\n", v[meio]);
+                return 0;
             }
-            else if (v[meio] < val)
+            else if (v[meio] < valProc)
             {
-                ini = meio + 1; 
+                ini = meio + 1;
             }
             else
             {
-                fim = meio - 1; 
+                fim = meio - 1;
             }
         }
-
-        if (pos != -1)
-        {
-            printf("Valor encontrado na posicao %d do vetor\n", pos + 1);
-        }
-        else
-        {
-            printf("Valor não encontrado no vetor\n");
-        }
+        printf("Valor nao encontrado no vetor.\n");
     }
     else if (opc == 3)
     {
-        for (i = 0; i < tam; ++i)
+        int rem;
+        printf("\nDigite o valor que deseja remover.\n");
+        scanf("%i", &rem);
+        for (i = 0; i < tam; i++)
         {
-            /* code */
+            if (v[i] == rem)
+            {
+                for (j = i; j < tam - 1; j++)
+                {
+                    v[j] = v[j + 1];
+                }
+                tam--;
+                break;
+            }
+        }
+
+        printf("Vetor completo:\n");
+        for (i = 0; i < tam; i++)
+        {
+            printf("%d ", v[i]);
         }
     }
 
